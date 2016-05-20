@@ -1,0 +1,34 @@
+@using WebApp.ViewModels
+@model HomeViewModel
+@{
+	ViewData["Title"] = "Departments";
+	var viewmodel = Model;
+}
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+	<body>
+		<h3>Departments</h3>
+
+		<table>
+			<thead>
+				<tr>
+					<th>DEPARTMENT GROUP</th>
+					<th>DEPARTMENT</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var dept in viewmodel.Departments.OrderBy(d => d.GroupName))
+				{
+					<tr>
+						<td>@dept.GroupName</td>
+						<td>
+							<a asp-controller="Home" asp-action="ViewDepartment" asp-route-id="@dept.DepartmentID" asp-route-name="@dept.Name">@dept.Name</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</body>
+</html>

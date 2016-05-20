@@ -1,0 +1,56 @@
+@using WebApp.Models
+@model Employee
+@{
+	ViewData["Title"] = "View Employee";
+	var employee = Model;
+
+	string genderImageName = (employee.Gender == "M")
+		? "bizman.png"
+		: "bizwoman.png";
+}
+
+<img src="~/images/@genderImageName" />
+<span>@employee.LoginID</span>
+<span>@employee.JobTitle</span>
+
+<br />
+
+<div class="inline width-40-percent">
+	<span>HR Details</span>
+	<table>
+		<tbody>
+			<tr>
+				<td>Hire Date:</td>
+				<td>@employee.HireDate.ToString("MM/dd/yyyy")</td>
+			</tr>
+			<tr>
+				<td>Is Salaried:</td>
+				<td>@(employee.SalariedFlag ? "Yes" : "No")</td>
+			</tr>
+			<tr>
+				<td>Vacation Hours:</td>
+				<td>@employee.VacationHours</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="inline width-40-percent">
+	<span>Personal Details</span>
+	<table>
+		<tbody>
+			<tr>
+				<td>Birth Date:</td>
+				<td>@employee.BirthDate.ToString("MM/dd/yyyy")</td>
+			</tr>
+			<tr>
+				<td>Is Married:</td>
+				<td>@(employee.MaritalStatus == "M" ? "Married" : "Single")</td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td>@(employee.Gender == "M" ? "Male" : "Female")</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

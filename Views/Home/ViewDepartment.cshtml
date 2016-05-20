@@ -1,0 +1,36 @@
+@using WebApp.ViewModels
+@model DepartmentViewModel
+@{
+	ViewData["Title"] = "View Department";
+	var viewmodel = Model;
+}
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+	<body>
+		<h3>@viewmodel.DepartmentName</h3>
+
+		<table>
+			<thead>
+				<tr>
+					<th>LOGIN</th>
+					<th>JOB TITLE</th>
+					<th>HIRED ON</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var employee in viewmodel.Employees.OrderBy(e => e.LoginID))
+				{
+					<tr>
+						<td>
+							<a asp-controller="Home" asp-action="ViewEmployee" asp-route-id="@employee.BusinessEntityID">@employee.LoginID</a>
+						</td>
+						<td>@employee.JobTitle</td>
+						<td>@employee.HireDate.ToString("MMM-dd-yyyy")</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</body>
+

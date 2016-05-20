@@ -1,0 +1,56 @@
+html,body {
+	padding: 0;
+	margin: 0;
+	color: #444;
+	background-color: whitesmoke;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px dashed #CCC;
+	background: #999;
+}
+
+.header {
+	background-color: #2554C7;
+	color: white;
+}
+
+.appname {
+	font-size: 1.5em;
+}
+
+.content {
+}
+
+.footer {
+	font-size: 0.8em;
+	padding-bottom: 30px;
+}
+
+.container {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.width-40-percent {
+	width: 40%;
+}
+
+a {
+	text-decoration: none;
+	color: #2554C7;
+}
