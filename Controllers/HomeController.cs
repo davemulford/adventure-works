@@ -36,9 +36,13 @@ namespace WebApp.Controllers
 		{
 			using (var adventureWorks = new AdventureWorksManager())
 			{
-				var employee = adventureWorks.GetEmployeeByID(id);
+				var viewmodel = new EmployeeViewModel();
 
-				return View("ViewEmployee", employee);
+				viewmodel.Employee = adventureWorks.GetEmployeeByID(id);
+				viewmodel.PayHistories = adventureWorks.GetEmployeePayHistory(id);
+				viewmodel.DepartmentHistories = adventureWorks.GetEmployeeDepartmentHistory(id);
+
+				return View("ViewEmployee", viewmodel);
 			}
 		}
 	}

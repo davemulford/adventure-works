@@ -1,56 +1,94 @@
-@using WebApp.Models
-@model Employee
+@using WebApp.ViewModels
+@model EmployeeViewModel
 @{
 	ViewData["Title"] = "View Employee";
-	var employee = Model;
+	var viewmodel = Model;
 
-	string genderImageName = (employee.Gender == "M")
-		? "bizman.png"
-		: "bizwoman.png";
+	string genderImageName = (viewmodel.Employee.Gender == "M")
+		? "male.png"
+		: "female.png";
+	
+	bool isSalaried = viewmodel.Employee.SalariedFlag;
 }
 
-<img src="~/images/@genderImageName" />
-<span>@employee.LoginID</span>
-<span>@employee.JobTitle</span>
+<div class="employee-header">
+	<img src="~/images/@genderImageName" />
+	<div class="inline">
+		<h2 class="highlight">@viewmodel.Employee.LoginID</h2>
+		<h3 class="highlight">@viewmodel.Employee.JobTitle</h3>
+	</div>
+</div>
 
-<br />
+<div>
+	<div class="inline width-40-percent">
+		<span>HR Details</span>
+		<table>
+			<tbody>
+				<tr>
+					<td>Hire Date:</td>
+					<td>@viewmodel.Employee.HireDate.ToString("MM/dd/yyyy")</td>
+				</tr>
+				<tr>
+					<td>Is Salaried:</td>
+					<td>@(viewmodel.Employee.SalariedFlag ? "Yes" : "No")</td>
+				</tr>
+				<tr>
+					<td>Vacation Hours:</td>
+					<td>@viewmodel.Employee.VacationHours</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-<div class="inline width-40-percent">
-	<span>HR Details</span>
+	<div class="inline width-40-percent">
+		<span>Personal Details</span>
+		<table>
+			<tbody>
+				<tr>
+					<td>Birth Date:</td>
+					<td>@viewmodel.Employee.BirthDate.ToString("MM/dd/yyyy")</td>
+				</tr>
+				<tr>
+					<td>Is Married:</td>
+					<td>@(viewmodel.Employee.MaritalStatus == "M" ? "Married" : "Single")</td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td>@(viewmodel.Employee.Gender == "M" ? "Male" : "Female")</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div>
+	<span>Department History</span>
 	<table>
 		<tbody>
-			<tr>
-				<td>Hire Date:</td>
-				<td>@employee.HireDate.ToString("MM/dd/yyyy")</td>
-			</tr>
-			<tr>
-				<td>Is Salaried:</td>
-				<td>@(employee.SalariedFlag ? "Yes" : "No")</td>
-			</tr>
-			<tr>
-				<td>Vacation Hours:</td>
-				<td>@employee.VacationHours</td>
-			</tr>
+			@foreach (var item in viewmodel.DepartmentHistories)
+			{
+				<tr>
+					<td>@item.Department?.Name</td>
+					<td title="@item.Shift?.StartTime - @item.Shift?.EndTime">@item.Shift?.Name</td>
+					<td>@item.StartDate.ToString("MM/dd/yyyy") - @(item.EndDate.HasValue ? item.EndDate.Value.ToString("MM/dd/yyyy") : "present")</td>
+				</tr>
+			}
 		</tbody>
 	</table>
 </div>
 
-<div class="inline width-40-percent">
-	<span>Personal Details</span>
+<div>
+	<span>Pay History</span>
 	<table>
 		<tbody>
-			<tr>
-				<td>Birth Date:</td>
-				<td>@employee.BirthDate.ToString("MM/dd/yyyy")</td>
-			</tr>
-			<tr>
-				<td>Is Married:</td>
-				<td>@(employee.MaritalStatus == "M" ? "Married" : "Single")</td>
-			</tr>
-			<tr>
-				<td>Gender:</td>
-				<td>@(employee.Gender == "M" ? "Male" : "Female")</td>
-			</tr>
+			@foreach (var item in viewmodel.PayHistories)
+			{
+				<tr>
+					<td>@item.RateChangeDate.ToString("MM/dd/yyyy")</td>
+					<td>@(isSalaried ? (item.Rate * 2000).ToString("C") : $"{item.Rate.ToString("C")}/hr")</td>
+				</tr>
+			}
 		</tbody>
 	</table>
 </div>
+

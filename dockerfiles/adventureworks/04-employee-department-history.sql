@@ -1,7 +1,7 @@
 CREATE TABLE employeedepartmenthistory (
 	BusinessEntityID INT NOT NULL,
-	DepartmentID INT NOT NULL,
-	ShiftID INT NULL,
+	DepartmentID INT NOT NULL REFERENCES department (DepartmentID),
+	ShiftID INT NULL REFERENCES shift (ShiftID),
 	StartDate TIMESTAMP NOT NULL,
 	EndDate TIMESTAMP NULL,
 	ModifiedDate TIMESTAMP NOT NULL,

@@ -10,26 +10,40 @@ body {
 	font-size: 16px;
 }
 
-h3 {
-	font-size: 1.2em;
-}
-
 hr {
 	border: 0;
 	border-bottom: 1px dashed #CCC;
 	background: #999;
 }
 
+h2 {
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+h3 {
+	margin: 0;
+}
+
 .header {
-	background-color: #2554C7;
+	background-color: #404040;
 	color: white;
+	height: 70px;
+}
+
+.floater {
+	float: left;
+	height: 50%;
+	width: 100%;
+	margin-bottom: -50px;
 }
 
 .appname {
-	font-size: 1.5em;
-}
-
-.content {
+	font-size: 1.8em;
+	margin-left: 10px;
+	margin-right: 10px;
+	position: relative;
+	top: 15px;
 }
 
 .footer {
@@ -47,7 +61,29 @@ hr {
 }
 
 .width-40-percent {
-	width: 40%;
+	width: 49%;
+}
+
+.highlight {
+	color: #2554C7;
+}
+
+.employee-header {
+	margin-top: 10px;
+	margin-bottom: 30px;
+
+	height: 95px;
+}
+
+.employee-header img {
+	position: relative;
+	top: 5px;
+	margin-right: 10px;
+}
+
+img.applogo {
+	position: relative;
+	top: 20px;
 }
 
 a {
