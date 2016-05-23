@@ -25,6 +25,10 @@ h3 {
 	margin: 0;
 }
 
+h4 {
+	font-size: 1.20em;
+}
+
 .header {
 	background-color: #404040;
 	color: white;
