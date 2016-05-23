@@ -20,13 +20,13 @@ The Adventure Works database should now be running.
 
 #### AW_CONNSTRING Environment Variable
 
-The application using an environment variable to get the connection string. First, you'll need to find the postgres container's IP address. This can be done by:
+The application uses an environment variable to get the connection string. First, you'll need to find the postgres container's IP address. This can be done by:
 
-`docker inspect adventure-works | grep -i ipaddr`
+`$ docker inspect adventure-works | grep -i ipaddr`
 
 Once you have the IP address, you can set the `AW_CONNSTRING` environment variable with the `export` command:
 
-`export AW_CONNSTRING="Server=IP_ADDRESS;Username=awuser;Password=redhat;Database=adventureworks"`
+`$ export AW_CONNSTRING="Server=IP_ADDRESS;Username=awuser;Password=redhat;Database=adventureworks"`
 
 #### Running the application
 
